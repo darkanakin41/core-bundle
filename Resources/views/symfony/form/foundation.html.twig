@@ -1,0 +1,367 @@
+{% extends 'form_div_layout.html.twig' %}
+
+{% block form_widget_simple %}
+    {% set type = type|default('text') %}
+    {% if type == "time" %}
+        {% set type = "text" %}
+    {% endif %}
+    <input type="{{ type }}" {{ block('widget_attributes') }} {% if value is not empty %}value="{{ value }}" {% endif %}/>
+{% endblock form_widget_simple %}
+
+{% block money_widget %}
+    {% set attr = attr|merge({'class': ('input-group-field ' ~ attr.class|default(''))|trim }) %}
+    <div class="input-group">
+        {{ block('form_widget_simple') }}
+        <span class="input-group-label">
+{{ money_pattern|replace({'{{ widget }}': ''})|raw }}
+</span>
+    </div>
+{% endblock money_widget %}
+
+{% block url_widget %}
+    {% set type = type|default('url') %}
+    {% set attr = attr|merge({'class': ('input-group-field ' ~ attr.class|default(''))|trim }) %}
+    <div class="input-group">
+<span class="input-group-label">
+http://
+</span>
+        {{ block('form_widget_simple') }}
+    </div>
+{% endblock url_widget %}
+
+{% block percent_widget %}
+    {% set type = type|default('text') %}
+    {% set attr = attr|merge({'class': ('input-group-field ' ~ attr.class|default(''))|trim }) %}
+    <div class="input-group">
+        {{ block('form_widget_simple') }}
+        <span class="input-group-label">
+%
+</span>
+    </div>
+{% endblock percent_widget %}
+
+{% block search_widget %}
+    {% set type = type|default('search') %}
+    {% set attr = attr|merge({'class': ('input-group-field ' ~ attr.class|default(''))|trim }) %}
+    <div class="input-group">
+        {{ block('form_widget_simple') }}
+        <span class="input-group-label">
+<i class="fa fa-search"></i>
+</span>
+    </div>
+{% endblock search_widget %}
+
+{% block date_widget %}
+    {% if widget == 'single_text' %}
+        {% set attr = attr|merge({'data-provider': 'datepicker'}) %}
+        {% set attr = attr|merge({'class': ('input-group-field ' ~ attr.class|default(''))|trim }) %}
+        <div class="input-group">
+            {{ block('form_widget_simple') }}
+            <span class="input-group-label">
+                <i class="fa fa-calendar"></i>
+            </span>
+        </div>
+    {% else %}
+        {% set attr = attr|merge({'class': ('row ' ~ attr.class|default(''))|trim }) %}
+        <div {{ block('widget_container_attributes') }}>
+            {{- date_pattern|replace({
+                '{{ year }}':  '<div class="small-4 medium-2 cells">' ~ form_widget(form.year) ~ '</div>',
+                '{{ month }}': '<div class="small-4 medium-2 cells">' ~ form_widget(form.month) ~ '</div>',
+                '{{ day }}':   '<div class="small-4 medium-2 cells">' ~ form_widget(form.day) ~ '</div>',
+            })|raw -}}
+            <div class="cells end"></div>
+        </div>
+    {% endif %}
+{% endblock date_widget %}
+
+{% block time_widget %}
+    {% if widget == 'single_text' %}
+        {% set attr = attr|merge({'data-provider': 'timepicker'}) %}
+        {% set attr = attr|merge({'class': ('input-group-field ' ~ attr.class|default(''))|trim }) %}
+        <div class="input-group">
+            {{ block('form_widget_simple') }}
+            <span class="input-group-label">
+<i class="fa fa-clock-o"></i>
+</span>
+        </div>
+    {% else %}
+        {% set vars = widget == 'text' ? { 'attr': { 'size': 1 }} : {} %}
+        {% set attr = attr|merge({'class': ('row ' ~ attr.class|default(''))|trim }) %}
+        <div {{ block('widget_container_attributes') }}>
+            <div class="small-2 cells">{{ form_widget(form.hour, vars) }}</div>
+            {% if with_minutes %}
+                <div class="small-2 cells">{{ form_widget(form.minute, vars) }}</div>
+            {% endif %}
+            {% if with_seconds %}
+                <div class="small-2 cells">: {{ form_widget(form.second, vars) }}</div>
+            {% endif %}
+            <div class="cells end"></div>
+        </div>
+    {% endif %}
+{% endblock time_widget %}
+
+{% block slider_widget %}
+    {% set slideClass = 'range-slider' %}
+    {% if vertical is defined %}
+        {% set slideClass = slideClass ~ ' vertical-range' %}
+    {% endif %}
+    {% set attr = attr|merge({'class': (slideClass ~ ' ' ~ attr.class|default(''))|trim }) %}
+    <div data-slider="{{ value }}"
+         data-options="start: {{ start }}; end: {{ end }}; step: {{ step }};{% if vertical is defined %} vertical: true;{% endif %}" {{ block('widget_container_attributes') }}>
+        <span class="range-slider-handle"></span>
+        <span class="range-slider-active-segment"></span>
+        <input type="hidden" {{ block('widget_attributes') }}/>
+    </div>
+{% endblock slider_widget %}
+
+{% block range_selector_widget %}
+    {% set slideClass = 'range-slider' %}
+    {% if vertical is defined %}
+        {% set slideClass = slideClass ~ ' vertical-range' %}
+    {% endif %}
+    {% set attr = attr|merge({'class': (slideClass ~ ' ' ~ attr.class|default(''))|trim }) %}
+    <div class="slider" data-slider data-start="{{ min }}" data-end="{{ max }}" data-initial-start="{{ form.vars.data.min|default(min) }}" data-initial-end="{{ form.vars.data.max|default(max) }}">
+        <span class="slider-handle" data-slider-handle role="slider" tabindex="1">{{ form.vars.data.min|default(min) }}</span>
+        <span class="slider-fill" data-slider-fill></span>
+        <span class="slider-handle" data-slider-handle role="slider" tabindex="1">{{ form.vars.data.max|default(max) }}</span>
+        {{ form_widget(form.min) }}
+        {{ form_widget(form.max) }}
+    </div>
+{% endblock range_selector_widget %}
+
+{% block switch_widget %}
+    {% set is_switch = true %}
+    {{ block('choice_widget_expanded') }}
+{% endblock switch_widget %}
+
+{% block choice_widget_expanded %}
+    <div class="choices">
+        {% for child in form %}
+            {% if is_switch is defined %}
+                <div class="switch-wrapper">
+                    <div class="switch left">
+                        {{- form_widget(child) -}}
+                        <label for="{{ child.vars.id }}"></label>
+                    </div>
+                    {{- form_label(child) -}}
+                    <div class="clearfix"></div>
+                </div>
+            {% else %}
+                <div class="radio">
+                    {{- form_widget(child) -}}
+                    {{- form_label(child) -}}
+                </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+{% endblock choice_widget_expanded %}
+
+{% block button_group_widget %}
+    {% set attr = attr|merge({'class': ('button-group ' ~ attr.class|default(''))|trim }) %}
+    <ul{% for attrname, attrvalue in attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>
+    {% for button in form.children %}
+        <li>{{- form_widget(button) -}}</li>
+    {% endfor %}
+    </ul>
+{% endblock %}
+
+{% block button_bar_widget %}
+    {% set attr = attr|merge({'class': ('button-bar ' ~ attr.class|default(''))|trim }) %}
+    <div{% for attrname, attrvalue in attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>
+    {% for button_group in form.children %}
+        {{- form_widget(button_group) -}}
+    {% endfor %}
+    </div>
+{% endblock %}
+
+{# Labels #}
+
+{% block form_label %}
+    {% if errors|length > 0 %}
+        {% set label_attr = label_attr|merge({'class': ('error ' ~ label_attr.class|default(''))|trim}) %}
+    {% endif %}
+    {% if label is not same as(false) %}
+        {% if not compound %}
+            {% set label_attr = label_attr|merge({'for': id}) %}
+        {% endif %}
+        {% if required %}
+            {% set label_attr = label_attr|merge({'class': (label_attr.class|default('') ~ ' required')|trim}) %}
+        {% endif %}
+        {% if label is empty %}
+            {% if label_format is not empty %}
+                {% set label = label_format|replace({
+                    '%name%': name,
+                    '%id%': id,
+                }) %}
+            {% else %}
+                {% set label = name %}
+            {% endif %}
+        {% endif %}
+        <{{ element|default('label') }}{% if label_attr %}{% with { attr: label_attr } %}{{ block('attributes') }}{% endwith %}{% endif %}>
+        {% if translation_domain is same as(false) %}
+            {{- label -}}
+        {% else %}
+            {{- label|lower|trans({}, translation_domain) -}}
+        {% endif %}
+        </{{ element|default('label') }}>
+    {% endif %}
+{% endblock form_label %}
+
+{% block button_group_label %}{% endblock %}
+
+{% block button_bar_label %}{% endblock %}
+
+{# Rows #}
+
+{% block form_row %}
+    {% set class_row = ['grid','grid-x','grid-padding-x']|merge(class_row|default([])) %}
+    {% if errors|length > 0 %}
+        {% set class_row = ['error']|merge(class_row) %}
+    {% endif %}
+    <div class="{{ class_row|join(' ') }}">
+        <div class="small-12 cell">
+            {% if collapse_row is defined %}
+            <div class="row collapse">{% endif %}
+                {{- form_label(form) -}}
+                {{- form_widget(form) -}}
+                {{- form_errors(form) -}}
+                {% if collapse_row is defined %}</div>{% endif %}
+        </div>
+    </div>
+{% endblock form_row %}
+
+{% block money_row %}
+    {% set collapse_row = true %}
+    {{ block('form_row') }}
+{% endblock money_row %}
+
+{% block url_row %}
+    {% set collapse_row = true %}
+    {{ block('form_row') }}
+{% endblock url_row %}
+
+{% block percent_row %}
+    {% set collapse_row = true %}
+    {{ block('form_row') }}
+{% endblock percent_row %}
+
+{% block search_row %}
+    {% set collapse_row = true %}
+    {{ block('form_row') }}
+{% endblock search_row %}
+
+{% block form_errors %}
+    {% if errors|length > 0 %}
+        {% if form.parent is empty %}
+            <div data-alert class="callout alert">
+                <h5>Oops ! Formulaire invalide !</h5>
+                <p>Il semblerait que des erreurs se soient glissées dans votre formulaire, corrigez les erreurs
+                    suivantes et réessayer !</p>
+                <ul>
+                    {% for error in errors %}
+                        <li>
+                            {{ error.message }}
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        {% else %}
+            {% for error in errors %}
+                <span class="label alert">{{ error.message }}</span>
+            {% endfor %}
+        {% endif %}
+    {% endif %}
+{% endblock form_errors %}
+
+{% block button_widget %}
+    {% if label is empty %}
+        {% if label_format is not empty %}
+            {% set label = label_format|replace({
+                '%name%': name,
+                '%id%': id,
+            }) %}
+        {% else %}
+            {% set label = name %}
+        {% endif %}
+    {% else %}
+        {% if "fa-" in label %}
+            {% set label = '<span class="' ~ label ~ '"></span>' %}
+        {% endif %}
+    {% endif %}
+    <button type="{{ type|default('button') }}" {{ block('button_attributes') }}>
+        {% if translation_domain is not null and translation_domain == false %}
+            {{ label|raw }}
+        {% else %}
+            {{ label|trans({}, translation_domain)|raw }}
+        {% endif %}
+    </button>
+{% endblock button_widget %}
+
+
+{% block media_widget %}
+    {% set attr = attr|merge({'on-change': "update-media"}) %}
+    {% if form.vars.data is not null %}
+        {% set attr = attr|merge({'value': form.vars.data.id}) %}
+    {% endif %}
+
+    {% if label is empty %}
+        {% if label_format is not empty %}
+            {% set label = label_format|replace({
+                '%name%': name,
+                '%id%': id,
+            }) %}
+        {% else %}
+            {% set label = name %}
+        {% endif %}
+    {% else %}
+        {% if "fa-" in label %}
+            {% set label = '<span class="' ~ label ~ '"></span>' %}
+        {% endif %}
+    {% endif %}
+
+    <div class="media-area" id="{{ form.vars.id }}" data-url="{{ path('api_media_get',{'id' : 'mediaid'}) }}">
+        <input type="hidden" {{ block('widget_attributes') }}/>
+        <a href="{{ path('api_media_modal') }}" class="button" data-toggle="modal" data-modal="#media_modal"
+           data-category="{{ category }}" data-field="{{ form.vars.id }}">
+
+            {% if translation_domain is not null and translation_domain == false %}
+                {{ label|raw }}
+            {% else %}
+                {{ label|trans({}, translation_domain)|raw }}
+            {% endif %}
+        </a>
+        <div class="preview">
+            {% if form.vars.data is not null %}
+                {{ file_render(form.vars.data,['banner']) }}
+            {% else %}
+                <div class="callout warning text-center">
+                    Aucun média sélectionné pour le moment
+                </div>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}
+
+{% block tags_widget %}
+    <div class="callout form-section tags">
+        <h5 class="callout-title">Tags</h5>
+        <div class="grid grid-x">
+            <div class="cell medium-10">
+                <input type="text" name="tag" placeholder="Tag"/>
+            </div>
+            <div class="cell medium-2">
+                <button class="button" data-toggle="add">Ajouter</button>
+            </div>
+            <div class="cell medium-12">
+                <ul class="items" data-prototype="{{ form_widget(prototype)|e('html_attr') }}">
+                    {% for item in form.children %}
+                        <li>
+                            {{ form_widget(item) }}
+                            <span class="critere">{{ item.vars.value }}</span>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+{% endblock tags_widget %}

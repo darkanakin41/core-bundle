@@ -1,0 +1,18 @@
+services:
+    plejeune.core.menu:
+        public: true
+        class: PLejeune\CoreBundle\Menu\MenuService
+        arguments: ["@service_container"]
+        tags:
+        - { name: twig.extension }
+    plejeune.core.date:
+        public: true
+        class: PLejeune\CoreBundle\Service\DateService
+        tags:
+        - { name: twig.extension }
+    plejeune.core.entity:
+        public: true
+        class: PLejeune\CoreBundle\Service\EntityRenderService
+        arguments: ["@service_container"]
+        tags:
+        - { name: twig.extension }

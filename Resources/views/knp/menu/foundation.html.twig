@@ -1,0 +1,84 @@
+{% extends 'knp_menu.html.twig' %}
+
+{% import _self as knp_menu %}
+
+{% block item %}
+    {% if item.displayed %}
+
+        {# CHECK IF CHILDREN IS ACTIVE #}
+        {% set childIsActive = false %}
+        {% for child in item.children if matcher.isCurrent(child) %}
+            {% set childIsActive = true %}
+        {% endfor %}
+        {# END CHECK IF CHILDREN IS ACTIVE #}
+
+        {%- set classes = item.attribute('class') is not empty ? [item.attribute('class')] : [] %}
+        {%- if matcher.isCurrent(item) %}
+            {%- set classes = classes|merge(["active"]) %}
+        {%- elseif matcher.isAncestor(item, options.matchingDepth) %}
+            {%- set classes = classes|merge([options.ancestorClass]) %}
+        {%- elseif (item.root.attribute("parent") is null or item.root.attribute("parent")) and item.name in app.request.attributes.get("_route") %}
+            {%- set classes = classes|merge(["active"]) %}
+        {%- endif %}
+
+        {%- set attributes = item.attributes %}
+        {%- if classes is not empty %}
+            {%- set attributes = attributes|merge({'class': classes|join(' ')}) %}
+        {%- endif %}
+        <li{{ knp_menu.attributes(attributes) }}>
+            {% if item.uri is empty and not item.hasChildren %}
+                {{ block('labelElement') }}
+            {%- else %}
+                {{ block('linkElement') }}
+            {%- endif %}
+            {%- set childrenClasses = item.childrenAttribute('class') is not empty ? [item.childrenAttribute('class')] : [] %}
+
+            {# GESTION DE L'OUVERTURE AUTO #}
+            {%- if item.extra('auto_open') and childIsActive-%}
+                {%- set childrenClasses = childrenClasses|merge(['is-active']) -%}
+            {%- endif -%}
+            {# FIN GESTION DE L'OUVERTURE AUTO #}
+
+            {%- set listAttributes = item.childrenAttributes|merge({'class': childrenClasses|join(' ') }) %}
+            {{ block('list') }}
+        </li>
+        {%- if item.extra('divider_append') -%}
+            {{ block('divider') }}
+        {%- endif -%}
+    {% endif %}
+{% endblock %}
+
+{% block label %}
+    {% if item.extra('picture') is not empty %}
+        <img src="{{ asset(item.extra('picture')) }}" alt="{{ item.label|trans }}"/>
+    {% endif %}
+    {% if item.extra('picture-only') is empty or not item.extra('picture-only') %}
+        {% if item.extra('icon') is not empty %}
+            <span class="{{ item.extra('icon') }}"></span>
+        {% endif %}
+        {% if item.attribute('label_content') is not empty %}
+            <span class="label round {{ item.attribute('label_class')|default('info') }}">
+                {{ item.attribute('label_content') }}
+            </span>
+        {% endif %}
+        {% if item.label is not empty %}
+            <span class="libelle">
+                {% if item.extra('translation_domain') is not null and item.extra('translation_domain') == false %}
+                    {{ item.label|raw }}
+                {% else %}
+                    {{ item.label|trans({}, item.extra('translation_domain'))|raw }}
+                {% endif %}
+            </span>
+        {% endif %}
+        {% if item.extra('badge') is not empty %}
+            <span class="badge">
+                {{ item.extra('badge') }}
+            </span>
+        {% endif %}
+    {% endif %}
+{% endblock %}
+
+
+{% block labelElement %}{{ block('label') }}{% endblock %}
+
+{#{% block divider %}<li class="divider"></li>{% endblock %}#}
