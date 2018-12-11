@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: darka
- * Date: 07/12/2018
- * Time: 18:54
- */
 
 namespace PLejeune\CoreBundle\Nomenclature;
 
