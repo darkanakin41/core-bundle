@@ -16,3 +16,8 @@ services:
         arguments: ["@service_container"]
         tags:
         - { name: twig.extension }
+    plejeune.media.slugify:
+      public: true
+      class: PLejeune\CoreBundle\Service\Slugify
+      tags:
+          - { name: twig.extension }
