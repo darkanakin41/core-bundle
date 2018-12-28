@@ -34,7 +34,7 @@
             {%- set childrenClasses = item.childrenAttribute('class') is not empty ? [item.childrenAttribute('class')] : [] %}
 
             {# GESTION DE L'OUVERTURE AUTO #}
-            {%- if item.extra('auto_open') and childIsActive-%}
+            {%- if item.extra('auto_open') and childIsActive -%}
                 {%- set childrenClasses = childrenClasses|merge(['is-active']) -%}
             {%- endif -%}
             {# FIN GESTION DE L'OUVERTURE AUTO #}
@@ -49,31 +49,26 @@
 {% endblock %}
 
 {% block label %}
+    {% if item.extra('translation_domain') is not null and item.extra('translation_domain') == false %}
+        {% set label = item.label %}
+    {% else %}
+        {% set label = item.label|trans({}, item.extra('translation_domain')) %}
+    {% endif %}
     {% if item.extra('picture') is not empty %}
-        <img src="{{ asset(item.extra('picture')) }}" alt="{{ item.label|trans }}"/>
+        <img src="{{ asset(item.extra('picture')) }}" alt="{{ label|raw }}" title="{{ label|raw }}"/>
     {% endif %}
     {% if item.extra('picture-only') is empty or not item.extra('picture-only') %}
         {% if item.extra('icon') is not empty %}
             <span class="{{ item.extra('icon') }}"></span>
         {% endif %}
         {% if item.attribute('label_content') is not empty %}
-            <span class="label round {{ item.attribute('label_class')|default('info') }}">
-                {{ item.attribute('label_content') }}
-            </span>
+            <span class="label round {{ item.attribute('label_class')|default('info') }}">{{ item.attribute('label_content') }}</span>
         {% endif %}
         {% if item.label is not empty %}
-            <span class="libelle">
-                {% if item.extra('translation_domain') is not null and item.extra('translation_domain') == false %}
-                    {{ item.label|raw }}
-                {% else %}
-                    {{ item.label|trans({}, item.extra('translation_domain'))|raw }}
-                {% endif %}
-            </span>
+            <span class="libelle">{{ label|raw }}</span>
         {% endif %}
         {% if item.extra('badge') is not empty %}
-            <span class="badge">
-                {{ item.extra('badge') }}
-            </span>
+            <span class="badge">{{ item.extra('badge') }}</span>
         {% endif %}
     {% endif %}
 {% endblock %}
