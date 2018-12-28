@@ -2,7 +2,7 @@
 
 namespace PLejeune\CoreBundle\Service;
 
-use PLejeune\MediaBundle\Tools\Slugify as ProcessClass;
+use PLejeune\CoreBundle\Tools\Slugify as ProcessClass;
 
 class Slugify extends \Twig_Extension
 {
