@@ -22,7 +22,7 @@ class Darkanakin41CoreExtension extends Extension
             return;
         }
 
-        $container->prependExtensionConfig('twig', array('paths' => array(__DIR__ . '/../Resources/views' => "PLejeuneCore")));
+        $container->prependExtensionConfig('twig', array('paths' => array(__DIR__ . '/../Resources/views' => "Darkanakin41Core")));
     }
 
 }
