@@ -3,14 +3,16 @@
 namespace Darkanakin41\CoreBundle\Service;
 
 use Darkanakin41\CoreBundle\Tools\Slugify as ProcessClass;
+use Twig\Extension\AbstractExtension;
+use Twig\TwigFunction;
 
-class Slugify extends \Twig_Extension
+class Slugify extends AbstractExtension
 {
 
     public function getFunctions()
     {
         return array(
-            new \Twig_SimpleFunction('slugify', array($this, 'slugify')),
+            new TwigFunction('slugify', array($this, 'slugify')),
         );
     }
 

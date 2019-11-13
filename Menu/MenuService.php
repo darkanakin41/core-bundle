@@ -4,8 +4,10 @@ namespace Darkanakin41\CoreBundle\Menu;
 
 use Knp\Menu\ItemInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
+use Twig\Extension\AbstractExtension;
+use Twig\TwigFunction;
 
-class MenuService extends \Twig_Extension
+class MenuService extends AbstractExtension
 {
     /**
      * @var ContainerInterface
@@ -29,7 +31,7 @@ class MenuService extends \Twig_Extension
     public function getFunctions()
     {
         return array(
-            new \Twig_SimpleFunction('menu_get', array($this, 'get'), array("is_safe" => array("html"))),
+            new TwigFunction('menu_get', array($this, 'get'), array("is_safe" => array("html"))),
         );
     }
 
