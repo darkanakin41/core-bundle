@@ -1,6 +1,6 @@
 <?php
 
-namespace PLejeune\CoreBundle\Tools;
+namespace Darkanakin41\CoreBundle\Tools;
 
 /*
  * To change this license header, choose License Headers in Project Properties.

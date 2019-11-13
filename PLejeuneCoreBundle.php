@@ -1,6 +1,6 @@
 <?php
 
-namespace PLejeune\CoreBundle;
+namespace Darkanakin41\CoreBundle;
 
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;

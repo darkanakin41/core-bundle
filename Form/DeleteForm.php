@@ -1,6 +1,6 @@
 <?php
 
-namespace PLejeune\CoreBundle\Form;
+namespace Darkanakin41\CoreBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;

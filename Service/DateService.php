@@ -1,6 +1,6 @@
 <?php
 
-namespace PLejeune\CoreBundle\Service;
+namespace Darkanakin41\CoreBundle\Service;
 
 class DateService extends \Twig_Extension
 {

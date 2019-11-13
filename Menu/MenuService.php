@@ -1,5 +1,5 @@
 <?php
-namespace PLejeune\CoreBundle\Menu;
+namespace Darkanakin41\CoreBundle\Menu;
 
 
 use Knp\Menu\ItemInterface;

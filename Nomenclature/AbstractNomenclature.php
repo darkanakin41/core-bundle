@@ -1,6 +1,6 @@
 <?php
 
-namespace PLejeune\CoreBundle\Nomenclature;
+namespace Darkanakin41\CoreBundle\Nomenclature;
 
 use ReflectionClass;
 

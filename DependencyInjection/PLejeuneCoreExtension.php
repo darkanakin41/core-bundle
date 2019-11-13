@@ -1,6 +1,6 @@
 <?php
 
-namespace PLejeune\CoreBundle\DependencyInjection;
+namespace Darkanakin41\CoreBundle\DependencyInjection;
 
 
 use Symfony\Component\Config\FileLocator;

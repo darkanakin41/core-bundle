@@ -1,8 +1,8 @@
 <?php
 
-namespace PLejeune\CoreBundle\Service;
+namespace Darkanakin41\CoreBundle\Service;
 
-use PLejeune\CoreBundle\Tools\Slugify as ProcessClass;
+use Darkanakin41\CoreBundle\Tools\Slugify as ProcessClass;
 
 class Slugify extends \Twig_Extension
 {

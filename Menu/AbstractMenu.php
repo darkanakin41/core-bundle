@@ -1,6 +1,6 @@
 <?php
 
-namespace PLejeune\CoreBundle\Menu;
+namespace Darkanakin41\CoreBundle\Menu;
 
 
 use Knp\Menu\FactoryInterface;
@@ -29,7 +29,7 @@ abstract class AbstractMenu
      */
     protected $requestStack;
     /**
-     * @var \PLejeune\MediaBundle\Service\Slugify
+     * @var Slugify
      */
     protected $slugify;
 
@@ -42,7 +42,7 @@ abstract class AbstractMenu
         $this->doctrine = $container->get("doctrine");
         $this->requestStack = $container->get("request_stack");
         $this->container = $container;
-        $this->slugify = $container->get("plejeune.media.slugify");
+        $this->slugify = $container->get("darkanakin41.core.slugify");
     }
 
     /**

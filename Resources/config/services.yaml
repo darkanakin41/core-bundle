@@ -1,23 +1,23 @@
 services:
-    plejeune.core.menu:
+    darkanakin41.core.menu:
         public: true
-        class: PLejeune\CoreBundle\Menu\MenuService
+        class: Darkanakin41\CoreBundle\Menu\MenuService
         arguments: ["@service_container"]
         tags:
         - { name: twig.extension }
-    plejeune.core.date:
+    darkanakin41.core.date:
         public: true
-        class: PLejeune\CoreBundle\Service\DateService
+        class: Darkanakin41\CoreBundle\Service\DateService
         tags:
         - { name: twig.extension }
-    plejeune.core.entity:
+    darkanakin41.core.entity:
         public: true
-        class: PLejeune\CoreBundle\Service\EntityRenderService
+        class: Darkanakin41\CoreBundle\Service\EntityRenderService
         arguments: ["@service_container"]
         tags:
         - { name: twig.extension }
-    plejeune.media.slugify:
+    darkanakin41.core.slugify:
       public: true
-      class: PLejeune\CoreBundle\Service\Slugify
+      class: Darkanakin41\CoreBundle\Service\Slugify
       tags:
           - { name: twig.extension }
