@@ -6,7 +6,7 @@ use Darkanakin41\CoreBundle\Tools\Slugify as ProcessClass;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFunction;
 
-class Slugify extends AbstractExtension
+class SlugifyService extends AbstractExtension
 {
 
     public function getFunctions()

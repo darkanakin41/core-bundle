@@ -1,4 +1,5 @@
 <?php
+
 namespace Darkanakin41\CoreBundle\Menu;
 
 
@@ -16,6 +17,7 @@ class MenuService extends AbstractExtension
 
     /**
      * MenuService constructor.
+     *
      * @param ContainerInterface $container
      */
     public function __construct(ContainerInterface $container)
@@ -31,7 +33,7 @@ class MenuService extends AbstractExtension
     public function getFunctions()
     {
         return array(
-            new TwigFunction('menu_get', array($this, 'get'), array("is_safe" => array("html"))),
+            new TwigFunction('menu_get', [$this, 'get'], ["is_safe" => ["html"]]),
         );
     }
 
@@ -43,7 +45,7 @@ class MenuService extends AbstractExtension
      */
     public function get($class, $function)
     {
-        $classname = "\\" . str_replace("/", "\\", $class);
+        $classname = "\\".str_replace("/", "\\", $class);
         $menu_class = new $classname($this->container, $this->container->get("knp_menu.factory"));
         if (!method_exists($menu_class, $function)) {
             return;

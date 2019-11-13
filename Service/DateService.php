@@ -1,8 +1,10 @@
 <?php
 
-namespace Darkanakin41\CoreBundle\Service;
+namespace Darkanakin41\CoreBundle\Extension;
+use Twig\Extension\AbstractExtension;
+use Twig\TwigFunction;
 
-class DateService extends \Twig_Extension
+class DateService extends AbstractExtension
 {
 
     public static function format(\DateTime $date, $format)
@@ -24,9 +26,9 @@ class DateService extends \Twig_Extension
     public function getFunctions()
     {
         return array(
-            new \Twig_SimpleFunction('date_intl_format', array($this, 'format')),
-            new \Twig_SimpleFunction('date_age', array($this, 'age')),
-            new \Twig_SimpleFunction('date_horodatage', array($this, 'horodatage')),
+            new TwigFunction('date_intl_format', array($this, 'format')),
+            new TwigFunction('date_age', array($this, 'age')),
+            new TwigFunction('date_horodatage', array($this, 'horodatage')),
         );
     }
 

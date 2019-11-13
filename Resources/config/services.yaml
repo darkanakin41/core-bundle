@@ -18,6 +18,6 @@ services:
         - { name: twig.extension }
     darkanakin41.core.slugify:
       public: true
-      class: Darkanakin41\CoreBundle\Service\Slugify
+      class: Darkanakin41\CoreBundle\Service\SlugifyService
       tags:
           - { name: twig.extension }
