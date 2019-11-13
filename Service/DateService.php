@@ -1,6 +1,6 @@
 <?php
 
-namespace Darkanakin41\CoreBundle\Extension;
+namespace Darkanakin41\CoreBundle\Service;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFunction;
 
