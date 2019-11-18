@@ -298,49 +298,49 @@ http://
 {% endblock button_widget %}
 
 
-{% block media_widget %}
-    {% set attr = attr|merge({'on-change': "update-media"}) %}
-    {% if form.vars.data is not null %}
-        {% set attr = attr|merge({'value': form.vars.data.id}) %}
-    {% endif %}
+{#{% block media_widget %}#}
+{#    {% set attr = attr|merge({'on-change': "update-media"}) %}#}
+{#    {% if form.vars.data is not null %}#}
+{#        {% set attr = attr|merge({'value': form.vars.data.id}) %}#}
+{#    {% endif %}#}
 
-    {% if label is empty %}
-        {% if label_format is not empty %}
-            {% set label = label_format|replace({
-                '%name%': name,
-                '%id%': id,
-            }) %}
-        {% else %}
-            {% set label = name %}
-        {% endif %}
-    {% else %}
-        {% if "fa-" in label %}
-            {% set label = '<span class="' ~ label ~ '"></span>' %}
-        {% endif %}
-    {% endif %}
+{#    {% if label is empty %}#}
+{#        {% if label_format is not empty %}#}
+{#            {% set label = label_format|replace({#}
+{#                '%name%': name,#}
+{#                '%id%': id,#}
+{#            }) %}#}
+{#        {% else %}#}
+{#            {% set label = name %}#}
+{#        {% endif %}#}
+{#    {% else %}#}
+{#        {% if "fa-" in label %}#}
+{#            {% set label = '<span class="' ~ label ~ '"></span>' %}#}
+{#        {% endif %}#}
+{#    {% endif %}#}
 
-    <div class="media-area" id="{{ form.vars.id }}" data-url="{{ path('api_media_get',{'id' : 'mediaid'}) }}">
-        <input type="hidden" {{ block('widget_attributes') }}/>
-        <a href="{{ path('api_media_modal') }}" class="button" data-toggle="modal" data-modal="#media_modal"
-           data-category="{{ category }}" data-field="{{ form.vars.id }}">
+{#    <div class="media-area" id="{{ form.vars.id }}" data-url="{{ path('api_media_get',{'id' : 'mediaid'}) }}">#}
+{#        <input type="hidden" {{ block('widget_attributes') }}/>#}
+{#        <a href="{{ path('api_media_modal') }}" class="button" data-toggle="modal" data-modal="#media_modal"#}
+{#           data-category="{{ category }}" data-field="{{ form.vars.id }}">#}
 
-            {% if translation_domain is not null and translation_domain == false %}
-                {{ label|raw }}
-            {% else %}
-                {{ label|trans({}, translation_domain)|raw }}
-            {% endif %}
-        </a>
-        <div class="preview">
-            {% if form.vars.data is not null %}
-                {{ file_render(form.vars.data,['banner']) }}
-            {% else %}
-                <div class="callout warning text-center">
-                    Aucun média sélectionné pour le moment
-                </div>
-            {% endif %}
-        </div>
-    </div>
-{% endblock %}
+{#            {% if translation_domain is not null and translation_domain == false %}#}
+{#                {{ label|raw }}#}
+{#            {% else %}#}
+{#                {{ label|trans({}, translation_domain)|raw }}#}
+{#            {% endif %}#}
+{#        </a>#}
+{#        <div class="preview">#}
+{#            {% if form.vars.data is not null %}#}
+{#                {{ file_render(form.vars.data,['banner']) }}#}
+{#            {% else %}#}
+{#                <div class="callout warning text-center">#}
+{#                    Aucun média sélectionné pour le moment#}
+{#                </div>#}
+{#            {% endif %}#}
+{#        </div>#}
+{#    </div>#}
+{#{% endblock %}#}
 
 {% block tags_widget %}
     <div class="callout form-section tags">
