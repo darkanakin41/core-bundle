@@ -24,15 +24,17 @@
   },
   "extra": {
     "branch-alias": {
-      "dev-master": "1.0"
+      "dev-master": "master"
     }
   },
   "autoload": {
     "psr-4": {
-      "Darkanakin41\\CoreBundle\\": ""
-    },
-    "exclude-from-classmap": [
-      "/Tests/"
-    ]
+      "Darkanakin41\\CoreBundle\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Darkanakin41\\CoreBundle\\Tests\\": "tests/"
+    }
   }
 }
