@@ -5,7 +5,7 @@
   "keywords": [
     "Core Bundle"
   ],
-  "homepage": "https://gitlab.com/darkanakin41/core-bundle",
+  "homepage": "https://github.com/darkanakin41/core-bundle",
   "license": "MIT",
   "authors": [
     {
@@ -16,6 +16,7 @@
   "require": {
     "php": "^7.0",
     "knplabs/knp-menu-bundle": "^2.0",
+    "knplabs/knp-paginator-bundle": "dev-master",
     "symfony/form": "*",
     "symfony/framework-bundle": "*"
   },
@@ -24,7 +25,7 @@
   },
   "extra": {
     "branch-alias": {
-      "dev-master": "master"
+      "dev-master": "dev"
     }
   },
   "autoload": {
