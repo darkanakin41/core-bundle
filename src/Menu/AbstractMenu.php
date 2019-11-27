@@ -35,11 +35,6 @@ abstract class AbstractMenu
     protected $slugify;
 
     /**
-     * @var string
-     */
-    private $translationDomain;
-
-    /**
      * @param FactoryInterface $factory
      */
     public function __construct(ContainerInterface $container, FactoryInterface $factory)
@@ -67,24 +62,17 @@ abstract class AbstractMenu
     }
 
     /**
-     * Set the translation domain to apply in applyTranslationDomain(ItemInterface $item)
-     * @param string $domain the domain to apply
-     */
-    protected function setTranslationDomain(string $domain){
-        $this->translationDomain = $domain;
-    }
-
-    /**
      * Apply the defined translation domain to all items
      *
      * @param ItemInterface $item the item to apply to
+     * @param string $domain the domain to apply
      * @param bool $recursive if it must be applied to children or not (default: true)
      */
-    protected function applyTranslationDomain(ItemInterface $item, bool $recursive = true){
-        $item->setExtra("translation_domain", "menu");
+    protected function applyTranslationDomain(ItemInterface $item, string $domain = "menu", bool $recursive = true){
+        $item->setExtra("translation_domain", $domain);
         if($recursive){
             foreach($item->getChildren() as $child){
-                $this->applyTranslationDomain($child);
+                $this->applyTranslationDomain($child, $domain, $recursive);
             }
         }
     }
