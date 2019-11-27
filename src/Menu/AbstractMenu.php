@@ -3,6 +3,7 @@
 namespace Darkanakin41\CoreBundle\Menu;
 
 
+use Darkanakin41\CoreBundle\Service\SlugifyService;
 use Knp\Menu\FactoryInterface;
 use Knp\Menu\ItemInterface;
 use Symfony\Bridge\Doctrine\RegistryInterface;
@@ -29,9 +30,14 @@ abstract class AbstractMenu
      */
     protected $requestStack;
     /**
-     * @var Slugify
+     * @var SlugifyService
      */
     protected $slugify;
+
+    /**
+     * @var string
+     */
+    private $translationDomain;
 
     /**
      * @param FactoryInterface $factory
@@ -43,6 +49,7 @@ abstract class AbstractMenu
         $this->requestStack = $container->get("request_stack");
         $this->container = $container;
         $this->slugify = $container->get("darkanakin41.core.slugify");
+        $this->setTranslationDomain('menu');
     }
 
     /**
@@ -57,5 +64,28 @@ abstract class AbstractMenu
             return self::getFirstLinkItem($firstChildren);
         }
         return $item;
+    }
+
+    /**
+     * Set the translation domain to apply in applyTranslationDomain(ItemInterface $item)
+     * @param string $domain the domain to apply
+     */
+    protected function setTranslationDomain(string $domain){
+        $this->translationDomain = $domain;
+    }
+
+    /**
+     * Apply the defined translation domain to all items
+     *
+     * @param ItemInterface $item the item to apply to
+     * @param bool $recursive if it must be applied to children or not (default: true)
+     */
+    protected function applyTranslationDomain(ItemInterface $item, bool $recursive = true){
+        $item->setExtra("translation_domain", "menu");
+        if($recursive){
+            foreach($item->getChildren() as $child){
+                $this->applyTranslationDomain($child);
+            }
+        }
     }
 }
