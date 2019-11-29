@@ -3,7 +3,7 @@
   "type": "symfony-bundle",
   "description": "Pierre LEJEUNE CoreBundle",
   "keywords": [
-    "Core Bundle",
+    "core",
     "symfony",
     "bundle"
   ],
