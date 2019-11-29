@@ -8,7 +8,8 @@ This is a bundle that I created in order to centralize code that I use on many o
     * knplabs/knp-menu-bundle
     * knplabs/knp-paginator-bundle
     
+All documentation is available [here](./doc/index.md)
+
 # TODO 
 Stuff that i may do in a more or less near future ...
-* Create the documentation 
 * Create some unit tests and setup a pipeline ?
