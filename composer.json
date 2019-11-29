@@ -3,7 +3,9 @@
   "type": "symfony-bundle",
   "description": "Pierre LEJEUNE CoreBundle",
   "keywords": [
-    "Core Bundle"
+    "Core Bundle",
+    "symfony",
+    "bundle"
   ],
   "homepage": "https://github.com/darkanakin41/core-bundle",
   "license": "MIT",
@@ -14,6 +16,7 @@
     }
   ],
   "require": {
+    "ext-gd": "*",
     "php": "^7.0",
     "knplabs/knp-menu-bundle": "*",
     "knplabs/knp-paginator-bundle": "*",
