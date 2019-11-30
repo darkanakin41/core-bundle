@@ -16,6 +16,7 @@
     }
   ],
   "require": {
+    "ext-json": "*",
     "ext-gd": "*",
     "php": "^7.0",
     "knplabs/knp-menu-bundle": "*",
