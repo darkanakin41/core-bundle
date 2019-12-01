@@ -19,10 +19,12 @@
     "ext-json": "*",
     "ext-gd": "*",
     "php": "^7.0",
-    "knplabs/knp-menu-bundle": "*",
-    "knplabs/knp-paginator-bundle": "*",
-    "symfony/form": "*",
     "symfony/framework-bundle": "*"
+  },
+  "suggest" : {
+    "knplabs/knp-menu-bundle": "Because the bundle grant templates form this bundle.",
+    "knplabs/knp-paginator-bundle": "Because the bundle grant templates form this bundle.",
+    "symfony/form": "Because the bundle grant templates form this bundle."
   },
   "config": {
     "sort-packages": true
