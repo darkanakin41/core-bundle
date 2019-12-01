@@ -19,7 +19,7 @@
     "ext-json": "*",
     "ext-gd": "*",
     "php": "^7.0",
-    "symfony/framework-bundle": "*"
+    "symfony/framework-bundle": "^4.4"
   },
   "suggest" : {
     "knplabs/knp-menu-bundle": "Because the bundle grant templates form this bundle.",
