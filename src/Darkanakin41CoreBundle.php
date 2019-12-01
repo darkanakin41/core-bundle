@@ -1,7 +1,10 @@
 <?php
 
-namespace Darkanakin41\CoreBundle;
+/*
+ * This file is part of the Darkanakin41CoreBundle package.
+ */
 
+namespace Darkanakin41\CoreBundle;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 

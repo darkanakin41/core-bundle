@@ -1,7 +1,10 @@
 <?php
 
-namespace Darkanakin41\CoreBundle\Service;
+/*
+ * This file is part of the Darkanakin41CoreBundle package.
+ */
 
+namespace Darkanakin41\CoreBundle\Service;
 
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Twig\Error\LoaderError;
@@ -28,20 +31,20 @@ class EntityRenderService extends AbstractExtension
     public function getFunctions()
     {
         return array(
-            new TwigFunction('entity_render', [$this, 'render'], ["is_safe" => ["html"]]),
+            new TwigFunction('entity_render', array($this, 'render'), array('is_safe' => array('html'))),
         );
     }
 
-    public function render($entity, $block = "main", $params = [])
+    public function render($entity, $block = 'main', $params = array())
     {
-        $fullclassname = explode("\\", get_class($entity));
+        $fullclassname = explode('\\', get_class($entity));
         $classname = strtolower(array_pop($fullclassname));
         try {
-            $template = $this->container->get("twig")->load(sprintf("entity/%s.html.twig", $classname));
-            return $template->renderBlock($block, array_merge([$classname => $entity], $params));
+            $template = $this->container->get('twig')->load(sprintf('entity/%s.html.twig', $classname));
+
+            return $template->renderBlock($block, array_merge(array($classname => $entity), $params));
         } catch (LoaderError $e) {
             return $e->getMessage();
         }
     }
-
 }

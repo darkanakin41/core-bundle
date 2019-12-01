@@ -1,5 +1,9 @@
 <?php
 
+/*
+ * This file is part of the Darkanakin41CoreBundle package.
+ */
+
 namespace Darkanakin41\CoreBundle\Service;
 
 use Darkanakin41\CoreBundle\Tools\Slugify as ProcessClass;
@@ -8,7 +12,6 @@ use Twig\TwigFunction;
 
 class SlugifyService extends AbstractExtension
 {
-
     public function getFunctions()
     {
         return array(
@@ -25,5 +28,4 @@ class SlugifyService extends AbstractExtension
     {
         return ProcessClass::process($text);
     }
-
 }

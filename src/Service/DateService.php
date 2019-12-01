@@ -1,22 +1,27 @@
 <?php
 
+/*
+ * This file is part of the Darkanakin41CoreBundle package.
+ */
+
 namespace Darkanakin41\CoreBundle\Service;
+
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFunction;
 
 class DateService extends AbstractExtension
 {
-
     public static function format(\DateTime $date, $format)
     {
         setlocale(LC_TIME, 'fr_FR.utf8', 'fra');
+
         return strftime($format, $date->getTimestamp());
     }
 
-    public function age(\DateTime $date = NULL)
+    public function age(\DateTime $date = null)
     {
         if (is_null($date)) {
-            return "N/A";
+            return 'N/A';
         }
         $date_interval = $date->diff(new \DateTime());
 
@@ -34,10 +39,11 @@ class DateService extends AbstractExtension
 
     public function horodatage(\DateTime $date, $full = 'd/m/Y \à H:i')
     {
-        $now = new \DateTime("now");
-        if ($date->format("Y-m-d") == $now->format("Y-m-d")) {
-            return $date->format("H:i");
+        $now = new \DateTime('now');
+        if ($date->format('Y-m-d') == $now->format('Y-m-d')) {
+            return $date->format('H:i');
         }
+
         return $date->format($full);
     }
 

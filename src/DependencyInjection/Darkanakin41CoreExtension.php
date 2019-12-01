@@ -1,7 +1,10 @@
 <?php
 
-namespace Darkanakin41\CoreBundle\DependencyInjection;
+/*
+ * This file is part of the Darkanakin41CoreBundle package.
+ */
 
+namespace Darkanakin41\CoreBundle\DependencyInjection;
 
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
@@ -22,7 +25,6 @@ class Darkanakin41CoreExtension extends Extension
             return;
         }
 
-        $container->prependExtensionConfig('twig', array('paths' => array(__DIR__.'/../Resources/views' => "Darkanakin41Core")));
+        $container->prependExtensionConfig('twig', array('paths' => array(__DIR__.'/../Resources/views' => 'Darkanakin41Core')));
     }
-
 }

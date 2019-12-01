@@ -1,8 +1,10 @@
 <?php
 
+/*
+ * This file is part of the Darkanakin41CoreBundle package.
+ */
 
 namespace Darkanakin41\CoreBundle\Reflection;
-
 
 use ReflectionClass;
 use ReflectionException;
@@ -11,8 +13,10 @@ use ReflectionProperty;
 class EnhancedReflectionClass extends ReflectionClass
 {
     /**
-     * @inheritDoc
+     * {@inheritdoc}
+     *
      * @return ReflectionProperty[]
+     *
      * @throws ReflectionException
      */
     public function getProperties($filter = null)
@@ -23,6 +27,7 @@ class EnhancedReflectionClass extends ReflectionClass
             $parentObject = new self($parent);
             $properties = array_merge($properties, $parentObject->getProperties($filter));
         }
+
         return $properties;
     }
 }

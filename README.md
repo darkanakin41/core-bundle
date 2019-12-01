@@ -12,4 +12,4 @@ All documentation is available [here](./doc/index.md)
 
 # TODO 
 Stuff that i may do in a more or less near future ...
-* Create some unit tests and setup a pipeline ?
+* Create some unit tests
