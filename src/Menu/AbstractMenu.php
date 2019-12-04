@@ -44,7 +44,6 @@ abstract class AbstractMenu
         $this->requestStack = $container->get('request_stack');
         $this->container = $container;
         $this->slugify = $container->get('darkanakin41.core.slugify');
-        $this->setTranslationDomain('menu');
     }
 
     /**
