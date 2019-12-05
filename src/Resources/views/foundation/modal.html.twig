@@ -1,0 +1,23 @@
+<div class="reveal-content">
+    {% if form is defined %}
+        {{ form_start(form) }}
+    {% endif %}
+    <div class="reveal-header">
+        <h1 class="reveal-title">{% block title %}{% endblock title %}</h1>
+        <button class="close-button" data-close aria-label="Close modal" type="button">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="reveal-body">
+        {% block body %}{% endblock body %}
+        {% block content %}{% endblock content %}
+    </div>
+    {% if block('footer') is not empty %}
+        <div class="reveal-footer">
+            {% block footer %}{% endblock footer %}
+        </div>
+    {% endif %}
+    {% if form is defined %}
+        {{ form_end(form, {'render_rest': false}) }}
+    {% endif %}
+</div>
