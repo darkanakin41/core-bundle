@@ -201,7 +201,7 @@ http://
         {% if translation_domain is same as(false) %}
             {{- label -}}
         {% else %}
-            {{- label|lower|trans({}, translation_domain) -}}
+            {{- label|trans({}, translation_domain) -}}
         {% endif %}
         </{{ element|default('label') }}>
     {% endif %}
@@ -347,7 +347,7 @@ http://
         <h5 class="callout-title">Tags</h5>
         <div class="grid grid-x">
             <div class="cell medium-10">
-                <input type="text" name="tag" placeholder="Tag"/>
+                <input type="text" name="tag" placeholder="Tag" />
             </div>
             <div class="cell medium-2">
                 <button class="button" data-toggle="add">Ajouter</button>
