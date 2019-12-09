@@ -1,4 +1,4 @@
-darkanakin41/table-bundle
+darkanakin41/core-bundle
 ===
 
 This is a bundle that I created in order to centralize code that I use on many of my projects such as :
