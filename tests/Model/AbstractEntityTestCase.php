@@ -49,6 +49,27 @@ abstract class AbstractEntityTestCase extends TestCase
      */
     abstract public function nullableFieldProvider();
 
+
+    /**
+     * @param $fieldname
+     * @param $testValue
+     *
+     * @dataProvider notNullableFieldProvider
+     */
+    public function testNotNullableField($fieldname, $testValue)
+    {
+        $entity = $this->getEntity();
+
+        $this->setFieldValue($entity, $fieldname, $testValue);
+        $after = $this->getFieldValue($entity, $fieldname, $testValue);
+        $this->assertEquals($testValue, $after);
+    }
+
+    /**
+     * @return array example : [fieldname, testValue]
+     */
+    abstract public function notNullableFieldProvider();
+
     /**
      * @param $fieldname
      * @param $defaultValue
