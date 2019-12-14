@@ -1,5 +1,6 @@
 darkanakin41/core-bundle
 ===
+[![Actions Status](https://github.com/darkanakin41/core-bundle/workflows/Quality/badge.svg)](https://github.com/darkanakin41/core-bundle/actions)
 
 This is a bundle that I created in order to centralize code that I use on many of my projects such as :
 
