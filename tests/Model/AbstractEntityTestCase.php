@@ -17,7 +17,7 @@ abstract class AbstractEntityTestCase extends TestCase
     abstract protected function getEntity();
 
     protected function getFieldValue($entity, $fieldname, $value){
-        if(is_object($value)){
+        if(is_bool($value)){
             return call_user_func([$entity, sprintf('is%s', ucfirst($fieldname))]);
         }
         return call_user_func([$entity, sprintf('get%s', ucfirst($fieldname))]);
