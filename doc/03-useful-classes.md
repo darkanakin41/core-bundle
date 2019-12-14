@@ -28,3 +28,11 @@ will output the following associative array :
 ```php
 $toto = ['ONLINE' => 'online', 'OFFLINE' => 'offline'];
 ```
+
+## Darkanakin41\CoreBundle\Tests\Model\AbstractEntityTestCase
+This is a set of tests that I execute on all my others bundles in order to check the sanity and good working of a model (when using MappedSuperClass or Entity)
+
+In order to use it, three methods needs to be override : 
+* getEntity : return an instance of the class to be tested
+* defaultValueProvider : the provider to check the default value of a field and try to update them
+* nullableFieldProvider : the provider to check fields which are null by default and try to update them
