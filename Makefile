@@ -1,3 +1,6 @@
+install:
+	composer install
+
 cs:
 	./vendor/bin/php-cs-fixer fix --verbose
 
