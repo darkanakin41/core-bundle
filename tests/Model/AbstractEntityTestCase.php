@@ -10,8 +10,26 @@ abstract class AbstractEntityTestCase extends TestCase
 {
     public function testId()
     {
-        $stream = $this->getEntity();
-        $this->assertNull($stream->getId());
+        $idFields = $this->getIdFields();
+        if(!is_array($idFields)){
+            $idFields = [$idFields];
+        }
+        if(count($idFields) > 0){
+            $entity = $this->getEntity();
+            foreach($idFields as $idField){
+                $this->assertNull($this->getFieldValue($entity, $this->getIdFields(), ""));
+            }
+        }else{
+            $this->assertTrue(true);
+        }
+    }
+
+    /**
+     * Get the list of name of ID Fields
+     * @return string[]
+     */
+    protected function getIdFields(){
+        return ["id"];
     }
 
     abstract protected function getEntity();
