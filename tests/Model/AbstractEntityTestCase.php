@@ -17,7 +17,7 @@ abstract class AbstractEntityTestCase extends TestCase
         if(count($idFields) > 0){
             $entity = $this->getEntity();
             foreach($idFields as $idField){
-                $this->assertNull($this->getFieldValue($entity, $this->getIdFields(), ""));
+                $this->assertNull($this->getFieldValue($entity, $idField, ""));
             }
         }else{
             $this->assertTrue(true);
