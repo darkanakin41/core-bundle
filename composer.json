@@ -16,7 +16,7 @@
     }
   ],
   "require": {
-    "php": "^7.0",
+    "php": "^7.1",
     "symfony/framework-bundle": "^4.4"
   },
   "suggest" : {
