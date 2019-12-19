@@ -16,14 +16,14 @@ jobs:
       - name: Install dependencies
         run: composer install --prefer-dist --no-progress --no-suggest
 
-      - name: Install suggested dependencies
-        run: composer require knplabs/knp-menu-bundle knplabs/knp-paginator-bundle symfony/form:^4.4
-
       # Add a test script to composer.json, for instance: "test": "vendor/bin/phpunit"
       # Docs: https://getcomposer.org/doc/articles/scripts.md
 
-      - name: Run Coding Style Control
+      - name: Run Bundle Security Control
+        run: make security
+
+      - name: Run PHP Coding Style Control
         run: make cs_dry_run
 
-#      - name: Run Tests
-#        run: make test
+#      - name: Run Twig Coding Style Control
+#        run: make twig_cs

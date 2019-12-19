@@ -6,9 +6,9 @@
     {% if item.displayed %}
 
         {# CHECK IF CHILDREN IS ACTIVE #}
-        {% set childIsActive = false %}
+        {% set child_is_active = false %}
         {% for child in item.children if matcher.isCurrent(child) %}
-            {% set childIsActive = true %}
+            {% set child_is_active = true %}
         {% endfor %}
         {# END CHECK IF CHILDREN IS ACTIVE #}
 
@@ -31,15 +31,15 @@
             {%- else %}
                 {{ block('linkElement') }}
             {%- endif %}
-            {%- set childrenClasses = item.childrenAttribute('class') is not empty ? [item.childrenAttribute('class')] : [] %}
+            {%- set children_classes = item.childrenAttribute('class') is not empty ? [item.childrenAttribute('class')] : [] %}
 
             {# GESTION DE L'OUVERTURE AUTO #}
-            {%- if item.extra('auto_open') and childIsActive -%}
-                {%- set childrenClasses = childrenClasses|merge(['is-active']) -%}
+            {%- if item.extra('auto_open') and child_is_active -%}
+                {%- set children_classes = children_classes|merge(['is-active']) -%}
             {%- endif -%}
             {# FIN GESTION DE L'OUVERTURE AUTO #}
 
-            {%- set listAttributes = item.childrenAttributes|merge({'class': childrenClasses|join(' ') }) %}
+            {%- set listAttributes = item.childrenAttributes|merge({'class': children_classes|join(' ') }) %}
             {{ block('list') }}
         </li>
         {%- if item.extra('divider_append') -%}

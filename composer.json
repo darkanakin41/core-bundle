@@ -27,7 +27,9 @@
     "symfony/form": "Because the bundle grant templates form this bundle."
   },
   "require-dev": {
-    "friendsofphp/php-cs-fixer": "^2.16"
+    "friendsofphp/php-cs-fixer": "^2.16",
+    "sensiolabs/security-checker": "^6.0",
+    "friendsoftwig/twigcs": "^3.2"
   },
   "config": {
     "sort-packages": true

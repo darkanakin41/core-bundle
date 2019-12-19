@@ -65,9 +65,9 @@ http://
         {% set attr = attr|merge({'class': ('row ' ~ attr.class|default(''))|trim }) %}
         <div {{ block('widget_container_attributes') }}>
             {{- date_pattern|replace({
-                '{{ year }}':  '<div class="small-4 medium-2 cells">' ~ form_widget(form.year) ~ '</div>',
+                '{{ year }}': '<div class="small-4 medium-2 cells">' ~ form_widget(form.year) ~ '</div>',
                 '{{ month }}': '<div class="small-4 medium-2 cells">' ~ form_widget(form.month) ~ '</div>',
-                '{{ day }}':   '<div class="small-4 medium-2 cells">' ~ form_widget(form.day) ~ '</div>',
+                '{{ day }}': '<div class="small-4 medium-2 cells">' ~ form_widget(form.day) ~ '</div>',
             })|raw -}}
             <div class="cells end"></div>
         </div>
@@ -101,11 +101,11 @@ http://
 {% endblock time_widget %}
 
 {% block slider_widget %}
-    {% set slideClass = 'range-slider' %}
+    {% set slide_class = 'range-slider' %}
     {% if vertical is defined %}
-        {% set slideClass = slideClass ~ ' vertical-range' %}
+        {% set slide_class = slide_class ~ ' vertical-range' %}
     {% endif %}
-    {% set attr = attr|merge({'class': (slideClass ~ ' ' ~ attr.class|default(''))|trim }) %}
+    {% set attr = attr|merge({'class': (slide_class ~ ' ' ~ attr.class|default(''))|trim }) %}
     <div data-slider="{{ value }}"
          data-options="start: {{ start }}; end: {{ end }}; step: {{ step }};{% if vertical is defined %} vertical: true;{% endif %}" {{ block('widget_container_attributes') }}>
         <span class="range-slider-handle"></span>
@@ -115,11 +115,11 @@ http://
 {% endblock slider_widget %}
 
 {% block range_selector_widget %}
-    {% set slideClass = 'range-slider' %}
+    {% set slide_class = 'range-slider' %}
     {% if vertical is defined %}
-        {% set slideClass = slideClass ~ ' vertical-range' %}
+        {% set slide_class = slide_class ~ ' vertical-range' %}
     {% endif %}
-    {% set attr = attr|merge({'class': (slideClass ~ ' ' ~ attr.class|default(''))|trim }) %}
+    {% set attr = attr|merge({'class': (slide_class ~ ' ' ~ attr.class|default(''))|trim }) %}
     <div class="slider" data-slider data-start="{{ min }}" data-end="{{ max }}" data-initial-start="{{ form.vars.data.min|default(min) }}" data-initial-end="{{ form.vars.data.max|default(max) }}">
         <span class="slider-handle" data-slider-handle role="slider" tabindex="1">{{ form.vars.data.min|default(min) }}</span>
         <span class="slider-fill" data-slider-fill></span>
@@ -214,7 +214,7 @@ http://
 {# Rows #}
 
 {% block form_row %}
-    {% set class_row = ['grid','grid-x','grid-padding-x']|merge(class_row|default([])) %}
+    {% set class_row = ['grid', 'grid-x', 'grid-padding-x']|merge(class_row|default([])) %}
     {% if errors|length > 0 %}
         {% set class_row = ['error']|merge(class_row) %}
     {% endif %}
