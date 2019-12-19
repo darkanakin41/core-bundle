@@ -23,7 +23,7 @@ jobs:
         run: make security
 
       - name: Run PHP Coding Style Control
-        run: make cs_dry_run
+        run: make php_cs_dry_run
 
 #      - name: Run Twig Coding Style Control
 #        run: make twig_cs
