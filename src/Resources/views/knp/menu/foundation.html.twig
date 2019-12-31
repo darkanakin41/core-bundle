@@ -7,8 +7,10 @@
 
         {# CHECK IF CHILDREN IS ACTIVE #}
         {% set child_is_active = false %}
-        {% for child in item.children if matcher.isCurrent(child) %}
-            {% set child_is_active = true %}
+        {% for child in item.children %}
+            {% if matcher.isCurrent(child) %}
+                {% set child_is_active = true %}
+            {% endif %}
         {% endfor %}
         {# END CHECK IF CHILDREN IS ACTIVE #}
 
@@ -55,7 +57,7 @@
         {% set label = item.label|trans({}, item.extra('translation_domain')) %}
     {% endif %}
     {% if item.extra('picture') is not empty %}
-        <img src="{{ asset(item.extra('picture')) }}" alt="{{ label|raw }}" title="{{ label|raw }}"/>
+        <img src="{{ asset(item.extra('picture')) }}" alt="{{ label|raw }}" title="{{ label|raw }}" />
     {% endif %}
     {% if item.extra('picture-only') is empty or not item.extra('picture-only') %}
         {% if item.extra('icon') is not empty %}
