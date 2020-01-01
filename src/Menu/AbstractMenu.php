@@ -9,7 +9,7 @@ namespace Darkanakin41\CoreBundle\Menu;
 use Darkanakin41\CoreBundle\Service\SlugifyService;
 use Knp\Menu\FactoryInterface;
 use Knp\Menu\ItemInterface;
-use Symfony\Bridge\Doctrine\RegistryInterface;
+use Doctrine\Common\Persistence\ManagerRegistry;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\RequestStack;
 
@@ -24,7 +24,7 @@ abstract class AbstractMenu
      */
     protected $factory;
     /**
-     * @var RegistryInterface
+     * @var ManagerRegistry
      */
     protected $doctrine;
 
