@@ -1,23 +1,39 @@
 services:
-    darkanakin41.core.menu:
+    Darkanakin41\CoreBundle\Menu\MenuService:
         public: true
         class: Darkanakin41\CoreBundle\Menu\MenuService
         arguments: ["@service_container"]
         tags:
-        - { name: twig.extension }
-    darkanakin41.core.date:
+            - { name: twig.extension }
+
+    Darkanakin41\CoreBundle\Service\DateService:
         public: true
         class: Darkanakin41\CoreBundle\Service\DateService
         tags:
-        - { name: twig.extension }
-    darkanakin41.core.entity:
+            - { name: twig.extension }
+
+    Darkanakin41\CoreBundle\Service\EntityRenderService:
         public: true
         class: Darkanakin41\CoreBundle\Service\EntityRenderService
         arguments: ["@service_container"]
         tags:
-        - { name: twig.extension }
+            - { name: twig.extension }
+
+    Darkanakin41\CoreBundle\Service\SlugifyService:
+        public: true
+        class: Darkanakin41\CoreBundle\Service\SlugifyService
+        tags:
+            - { name: twig.extension }
+
+    darkanakin41.core.menu:
+        alias: Darkanakin41\CoreBundle\Menu\MenuService
+        public: true
+    darkanakin41.core.date:
+        alias: Darkanakin41\CoreBundle\Service\DateService
+        public: true
+    darkanakin41.core.entity:
+        alias: Darkanakin41\CoreBundle\Service\EntityRenderService
+        public: true
     darkanakin41.core.slugify:
-      public: true
-      class: Darkanakin41\CoreBundle\Service\SlugifyService
-      tags:
-          - { name: twig.extension }
+        alias: Darkanakin41\CoreBundle\Service\SlugifyService
+        public: true
