@@ -16,8 +16,8 @@
     }
   ],
   "require": {
-    "php": "^7.1",
-    "symfony/framework-bundle": "^4.4"
+    "php": ">=7.1",
+    "symfony/framework-bundle": "*"
   },
   "suggest" : {
     "ext-json": "*",
